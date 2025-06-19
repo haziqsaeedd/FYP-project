@@ -1,0 +1,58 @@
+export const electricityCards = [
+  {
+    id: 1,
+    title: "UPS Installation",
+    description: "Professional UPS installation for uninterrupted power.",
+    icon: "🔌",
+    route: "/services/electricity/ups-installation",
+  },
+  {
+    id: 2,
+    title: "UPS Repair Service",
+    description: "Fast repair service for all UPS issues.",
+    icon: "🛠️",
+    route: "/services/electricity/ups-repair",
+  },
+  {
+    id: 3,
+    title: "General Electric Service",
+    description: "Complete electric maintenance for homes and offices.",
+    icon: "💡",
+    route: "/services/electricity/general-electric",
+  },
+  {
+    id: 4,
+    title: "Wiring Installation",
+    description: "Safe and professional wiring setup.",
+    icon: "🔧",
+    route: "/services/electricity/wiring-installation",
+  },
+  {
+    id: 5,
+    title: "Fan Installation",
+    description: "Ceiling and exhaust fan installation services.",
+    icon: "🌀",
+    route: "/services/electricity/fan-installation",
+  },
+  {
+    id: 6,
+    title: "Breaker Replacement",
+    description: "Replace damaged breakers with quality components.",
+    icon: "🧯",
+    route: "/services/electricity/breaker-replacement",
+  },
+  {
+    id: 7,
+    title: "Electric Board Setup",
+    description: "Modern board setup and design.",
+    icon: "🔲",
+    route: "/services/electricity/electric-board-setup",
+  },
+  {
+    id: 8,
+    title: "Generator Setup",
+    description: "Complete generator installation and tuning.",
+    icon: "⚙️",
+    route: "/services/electricity/generator-setup",
+  },
+];

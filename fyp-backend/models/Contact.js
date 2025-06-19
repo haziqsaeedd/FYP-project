@@ -1,8 +1,6 @@
 // models/Contact.js
 import mongoose from 'mongoose';
-// hashir update
-// hashir update
-// Verified Hashir commit 🚀
+
 
 const contactSchema = new mongoose.Schema(
   {
