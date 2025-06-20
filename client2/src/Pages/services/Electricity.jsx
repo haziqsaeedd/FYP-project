@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { electricityCards } from '../../utils/ObjectData/CardData';
+import { electricityCards } from '../../utils/ObjectData/ElectricCardData';
 import { useNavigate } from 'react-router-dom'; // ✅ Add this
 
 const Electricity = () => {
