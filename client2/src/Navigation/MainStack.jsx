@@ -20,6 +20,11 @@ import TapInstallation from "../Pages/services/Plumber/TapInstallation";
 import TankCleaning from "../Pages/services/Plumber/TankCleaning";
 import GeyserInstallation from "../Pages/services/Plumber/GeyserInstallation";
 
+import AcInstallation from "../Pages/services/HomeServices/ACInstall"
+import WashingMachine from "../Pages/services/HomeServices/WashingMachine"
+import Refrigerator from "../Pages/services/HomeServices/Refrigerator"
+import Oven from "../Pages/services/HomeServices/Oven"
+
 
 
 function MainStack() {
@@ -45,6 +50,12 @@ function MainStack() {
         <Route path="/services/plumber/tap-installation" element={<TapInstallation />} />
         <Route path="/services/plumber/tankcleaning" element={<TankCleaning />} />
         <Route path="/services/plumber/geyser-installation" element={<GeyserInstallation />} />
+
+
+         <Route path="/services/homeapplience/ac-installation" element={<AcInstallation />} />
+         <Route path="/services/homeapplience/washing-machine" element={< WashingMachine/>} />
+         <Route path="/services/homeapplience/refrigerator" element={< Refrigerator/>} />
+         <Route path="/services/homeapplience/oven" element={< Oven/>} />
     
     </Routes>
   );
