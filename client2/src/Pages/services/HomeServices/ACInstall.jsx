@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FaSnowflake, FaWrench, FaPumpSoap } from "react-icons/fa";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../context/AuthContext"; 
+import { useNavigate, useLocation } from "react-router-dom";
 
 const serviceOptions = [
   { value: "AC Installation", label: "AC Installation", icon: <FaSnowflake /> },
@@ -9,6 +12,17 @@ const serviceOptions = [
 ];
 
 const AcInstallation = () => {
+   const { user } = useContext(AuthContext);
+const navigate = useNavigate();
+const location = useLocation();
+
+useEffect(() => {
+  if (!user) {
+    navigate("/login", { state: { from: location.pathname } });
+  }
+}, [user, navigate, location]);
+
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

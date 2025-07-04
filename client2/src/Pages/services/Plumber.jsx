@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { electricityCards } from '../../utils/ObjectData/PlumberCardData';
-import { useNavigate } from 'react-router-dom'; // ✅ Add this
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext"; 
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Plumber = () => {
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const { user } = useContext(AuthContext);
+ const navigate = useNavigate();
+ const location = useLocation();
+ 
+ useEffect(() => {
+   if (!user) {
+     navigate("/login", { state: { from: location.pathname } });
+   }
+ }, [user, navigate, location]);
 
   const [form, setForm] = useState({
     firstName: '',

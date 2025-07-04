@@ -25,6 +25,10 @@ import WashingMachine from "../Pages/services/HomeServices/WashingMachine"
 import Refrigerator from "../Pages/services/HomeServices/Refrigerator"
 import Oven from "../Pages/services/HomeServices/Oven"
 
+import Furniture from "../Pages/services/HandCraft/Furniture";
+import Woodwork from "../Pages/services/HandCraft/Woodwork";
+import Curtains from "../Pages/services/HandCraft/Curtains";
+
 
 
 function MainStack() {
@@ -56,6 +60,12 @@ function MainStack() {
          <Route path="/services/homeapplience/washing-machine" element={< WashingMachine/>} />
          <Route path="/services/homeapplience/refrigerator" element={< Refrigerator/>} />
          <Route path="/services/homeapplience/oven" element={< Oven/>} />
+
+        <Route path="/services/handcraft/furniture" element={<Furniture />} />
+        <Route path="/services/handcraft/woodwork" element={<Woodwork />} />
+        <Route path="/services/handcraft/curtins" element={<Curtains />} />
+
+
     
     </Routes>
   );

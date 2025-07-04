@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FaBox, FaRecycle } from "react-icons/fa";
+import { FaCouch } from "react-icons/fa";
+import { MdCleaningServices } from "react-icons/md";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../context/AuthContext"; 
 import { useNavigate, useLocation } from "react-router-dom";
 
 const serviceOptions = [
-  { value: "Tank Cleaning", label: "Tank Cleaning", icon: <FaBox /> },
-  { value: "Drain Cleaning", label: "Drain Cleaning", icon: <FaRecycle /> },
+  { value: "Furniture Repair", label: "Furniture Repair", icon: <FaCouch /> },
+  { value: "Furniture Cleaning", label: "Furniture Cleaning", icon: <MdCleaningServices /> },
+  
 ];
 
-const TankCleaning = () => {
-   const { user } = useContext(AuthContext);
+const Furniture = () => {
+ const { user } = useContext(AuthContext);
 const navigate = useNavigate();
 const location = useLocation();
 
@@ -28,7 +30,7 @@ useEffect(() => {
     email: '',
     phone: '',
     address: '',
-    category: 'Plumber', // matches backend
+    category: 'Handcraft', // matches backend
     service: '',
     message: '',
   });
@@ -60,7 +62,7 @@ useEffect(() => {
           email: '',
           phone: '',
           address: '',
-          category: 'Plumber',
+          category: 'Electricity',
           service: '',
           message: '',
         });
@@ -74,9 +76,9 @@ useEffect(() => {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Water Tank Cleaning Services</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-4">Furniture Cleaning and Repair Services</h1>
       <p className="text-gray-600 mb-6">
-        HOMO provides expert Water Tank Cleaning provide tank cleaning and drain cleaning at your doorstep. With 6+ years of experience and 50,000+ satisfied customers, you can rely on our trusted professionals.
+        HOMO provides expert cleaner, repair and maintenance at your doorstep. With 6+ years of experience and 50,000+ satisfied customers, you can rely on our trusted professionals.
       </p>
 
       <h2 className="text-xl font-semibold mb-3 text-gray-800">📞 Please Fill The Form Below</h2>
@@ -178,4 +180,4 @@ useEffect(() => {
   );
 };
 
-export default TankCleaning;
+export default Furniture;

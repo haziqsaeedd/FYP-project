@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 import { FaBatteryHalf, FaTools } from "react-icons/fa";
 
 const serviceOptions = [
@@ -8,13 +10,24 @@ const serviceOptions = [
 ];
 
 const UpsInstallation = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 🚫 Redirect to login if not logged in
+  useEffect(() => {
+    if (!user) {
+      navigate("/login", { state: { from: location.pathname } });
+    }
+  }, [user, navigate, location.pathname]);
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
     address: '',
-    category: 'Electricity', // matches backend
+    category: 'Electricity',
     service: '',
     message: '',
   });
@@ -22,14 +35,14 @@ const UpsInstallation = () => {
   const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
   const handleServiceSelect = (value) => {
-    setFormData((prev) => ({ ...prev, service: value }));
+    setFormData(prev => ({ ...prev, service: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -70,55 +83,13 @@ const UpsInstallation = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-            required
-            className="w-full border px-4 py-2 rounded"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
-            required
-            className="w-full border px-4 py-2 rounded"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
+          <input type="text" name="firstName" placeholder="First Name" required className="w-full border px-4 py-2 rounded" value={formData.firstName} onChange={handleChange} />
+          <input type="text" name="lastName" placeholder="Last Name" required className="w-full border px-4 py-2 rounded" value={formData.lastName} onChange={handleChange} />
         </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-          className="w-full border px-4 py-2 rounded"
-          value={formData.email}
-          onChange={handleChange}
-        />
-
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone (03XXXXXXXXX)"
-          required
-          className="w-full border px-4 py-2 rounded"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="address"
-          placeholder="Address"
-          required
-          className="w-full border px-4 py-2 rounded"
-          value={formData.address}
-          onChange={handleChange}
-        />
+        <input type="email" name="email" placeholder="Email" required className="w-full border px-4 py-2 rounded" value={formData.email} onChange={handleChange} />
+        <input type="tel" name="phone" placeholder="Phone (03XXXXXXXXX)" required className="w-full border px-4 py-2 rounded" value={formData.phone} onChange={handleChange} />
+        <input type="text" name="address" placeholder="Address" required className="w-full border px-4 py-2 rounded" value={formData.address} onChange={handleChange} />
 
         <div>
           <label className="block mb-2 font-medium">Choose Your Service</label>
@@ -138,14 +109,7 @@ const UpsInstallation = () => {
           </div>
         </div>
 
-        <textarea
-          name="message"
-          rows="4"
-          placeholder="Please explain your problem (optional)"
-          className="w-full border px-4 py-2 rounded"
-          value={formData.message}
-          onChange={handleChange}
-        ></textarea>
+        <textarea name="message" rows="4" placeholder="Please explain your problem (optional)" className="w-full border px-4 py-2 rounded" value={formData.message} onChange={handleChange}></textarea>
 
         {status && (
           <div className={`text-sm font-semibold ${status.includes("✅") ? "text-green-600" : "text-red-600"}`}>
@@ -153,10 +117,7 @@ const UpsInstallation = () => {
           </div>
         )}
 
-        <button
-          type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-semibold"
-        >
+        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-semibold">
           Submit Request
         </button>
       </form>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FaFireAlt, FaWrench } from "react-icons/fa";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../context/AuthContext"; 
+import { useNavigate, useLocation } from "react-router-dom";
 
 const serviceOptions = [
   { value: "Geyser Installation", label: "Geyser Installation", icon: <FaFireAlt /> },
@@ -8,6 +11,17 @@ const serviceOptions = [
 ];
 
 const GeyserInstallation = () => {
+   const { user } = useContext(AuthContext);
+const navigate = useNavigate();
+const location = useLocation();
+
+useEffect(() => {
+  if (!user) {
+    navigate("/login", { state: { from: location.pathname } });
+  }
+}, [user, navigate, location]);
+
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

@@ -1,22 +1,27 @@
 import { useState, useContext } from 'react';
-import api from '../utils/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import api from '../utils/api';
 import AuthLayout from './AuthLayout';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ Get where the user came from
   const { login } = useContext(AuthContext);
+
+  // Get previous location user tried to access (or fallback to "/")
+  const redirectPath = location.state?.from || '/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     try {
       const res = await api.post('/auth/login', form);
       login(res.data);
-      navigate('/');
+      navigate(redirectPath); // ✅ Go back to the page user originally wanted
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }
